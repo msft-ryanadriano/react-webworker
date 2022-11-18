@@ -22,11 +22,21 @@ reportWebVitals(console.log);
 const doLongRunningWorkWithWorker = () => {
   const worker = new Worker('./demo-worker', {
     name: 'demo-worker',
-    type: 'module'
+    type: 'module',
   })
 
   const workerApi = wrap<import('./demo-worker').DemoWorker>(worker);
   workerApi.doLongRunningWork()
+
+  /*
+  
+  const worker = new Worker(
+    new URL("./demo-worker/index.ts", import.meta.url) as NodeURL
+  );
+  const workerApi = wrap<DemoWorker>(worker)
+  workerApi.doLongRunningWork()
+
+  */
 }
 
 doLongRunningWorkWithWorker()
