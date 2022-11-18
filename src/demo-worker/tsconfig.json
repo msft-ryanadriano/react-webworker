@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["webworker", "esnext"],
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "allowJs": false,
+    "baseUrl": "."
+  }
+}
