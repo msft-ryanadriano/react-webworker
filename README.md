@@ -1,6 +1,6 @@
 # Getting Started with Web Worker
 
-This is a demo React app that contains a simple implementation of Web Workers. Web Workers allows code to be executed in the background without affecting the performance of the main thread.
+This is a demo React app that contains a simple implementation of Web Workers. The purpose of this demo is to indentify the minimal requirements needed to use web workers within a React app. Web Workers allows code to be executed in the background without affecting the performance of the main thread.
 
 ## Code
 
