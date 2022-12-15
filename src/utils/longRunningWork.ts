@@ -1,5 +1,6 @@
 export const doLongRunningWork = (callback: (result: string) => void) => {
   console.log('Starting long running work...')
+
   const delayInSeconds = 5
   const start = new Date().getTime()
   const delayInMs = delayInSeconds * 1000
@@ -10,7 +11,8 @@ export const doLongRunningWork = (callback: (result: string) => void) => {
     }
   }
 
-  callback('Yay done!')
-
   console.log('Finished long running work!')
+
+  console.log('Executing callback!')
+  callback('Yay done!')
 }
