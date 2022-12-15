@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { wrap, proxy } from 'comlink';
-import * as Demo from './worker/demo.worker'
+import { doLongRunningWork } from './worker/demoWorker.utils'
 
 
 const App = () => {
@@ -12,15 +11,9 @@ const App = () => {
     </div>
     <div>
       <button type='button' onClick={() => {
-        const worker = new Worker(new URL('./worker/demo.worker.ts', import.meta.url))
-        const workerApi = wrap<Demo.MyWorker>(worker);
-
-        workerApi.doLongRunningWork(proxy((value: string) => {
-          console.log(`Received '${value}' from web worker.`)
-          setOutput(value)
-        }))
+        doLongRunningWork((value: string) => setOutput(value)) 
       }}>
-        Run worker
+        Run web worker
       </button>
     </div>
     <p>Output: {output}</p>

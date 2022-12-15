@@ -1,4 +1,4 @@
-export const doLongRunningWork = (callback: (result: string) => void) => {
+export const longRunningWork = (callback: (result: string) => void) => {
   console.log('Starting long running work...')
 
   const delayInSeconds = 5
@@ -12,7 +12,6 @@ export const doLongRunningWork = (callback: (result: string) => void) => {
   }
 
   console.log('Finished long running work!')
-
   console.log('Executing callback!')
   callback('Yay done!')
 }

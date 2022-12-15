@@ -1,8 +1,8 @@
 import { expose } from 'comlink'
-import { doLongRunningWork } from '../utils/longRunningWork'
+import { longRunningWork } from '../utils/longRunningWork'
 
 const exports = {
-  doLongRunningWork
+  longRunningWork
 }
 
 // create the public facing api type
