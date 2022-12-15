@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { wrap, proxy } from 'comlink';
+import * as Demo from './worker/demo.worker'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+const App = () => {
+  const [output, setOutput] = React.useState<string>()
+  return (<>
+    <div>
+      <button type='button' onClick={() => {
+        const worker = new Worker(new URL('./worker/demo.worker.ts', import.meta.url))
+        const workerApi = wrap<Demo.MyWorker>(worker);
+
+        workerApi.doLongRunningWork(proxy((value: string) => {
+          console.log(`Printing returned value (${value}) from web worker.`)
+          setOutput(value)
+        }))
+      }}>
+        Run worker
+      </button>
     </div>
-  );
+    <p>Output: {output}</p>
+  </>)
 }
+
 
 export default App;
