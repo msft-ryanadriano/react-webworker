@@ -17,26 +17,14 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals(console.log);
+reportWebVitals();
 
 const doLongRunningWorkWithWorker = () => {
-  const worker = new Worker('./demo-worker', {
-    name: 'demo-worker',
-    type: 'module',
+  const worker = new Worker(new URL('./worker/demo.worker.ts', import.meta.url), {
+    type: 'module'
   })
-
-  const workerApi = wrap<import('./demo-worker').DemoWorker>(worker);
+  const workerApi = wrap<import('./worker/demo.worker').DemoWorker>(worker);
   workerApi.doLongRunningWork()
-
-  /*
-  
-  const worker = new Worker(
-    new URL("./demo-worker/index.ts", import.meta.url) as NodeURL
-  );
-  const workerApi = wrap<DemoWorker>(worker)
-  workerApi.doLongRunningWork()
-
-  */
 }
 
 doLongRunningWorkWithWorker()
