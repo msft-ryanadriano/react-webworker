@@ -10,5 +10,6 @@
     "sourceMap": true,
     "allowJs": false,
     "baseUrl": "."
-  }
+  },
+  "include": ["./*.ts"]
 }
